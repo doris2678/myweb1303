@@ -58,7 +58,7 @@
 ;?>   
 
 <?php else:?>
-<form action="" method="post">
+<form action="?" method="post">
 <table style="width:300px;margin:auto;">
   <tr>
     <td>帳號：</td>
