@@ -2,14 +2,16 @@
   .lists{
     width:210px;
     height:240px;
-    background:rgba(0,255,0,0.5);
+    /* background:rgba(0,255,0,0.5); */
     margin:0 auto;
+    position: relative;
+    overflow: hidden;
   }
 
   .btns{
     width:320px;
     height:120px;
-    background:rgba(0,0,255,0.5);    
+    /* background:rgba(0,0,255,0.5);     */
   }
 
   .left,.right{
@@ -36,13 +38,43 @@
      align-items:center;
   }
 
+.poster{
+  text-align:center;
+  position: absolute;
+  width:210px;
+  height:240px;
+  display:none;  
+}
+
+  .poster img{
+    width:200px;
+    height:220px;
+  }
+
 </style>
+<?php
+$posters=$Poster->all(['sh'=>1]," order by `rank`");
+?>
 
 <div class="half" style="vertical-align:top;">
         <h1>預告片介紹</h1>
         <div class="rb tab" style="width:95%;">
             <div id="abgne-block-20111227">
                 <div class="lists">
+                 <?php
+                 foreach ($posters as $poster):
+                ?>
+                <div class="poster">
+                  <img src="./image/<?=$poster['img'];?>" >
+                  <div><?=$poster['name'];?></div>
+                  
+                </div>
+
+                <?php
+                endforeach;
+                ?>
+  
+
 
                 </div>
                 <div class="controls">
@@ -53,6 +85,13 @@
             </div>
         </div>
     </div>
+
+<script>
+  $(".poster").eq(0).show();
+</script>    
+
+
+
     <div class="half">
         <h1>院線片清單</h1>
         <div class="rb tab" style="width:95%;">
