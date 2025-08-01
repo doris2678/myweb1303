@@ -1,6 +1,5 @@
-<h2 class='ct'>線上訂票</h2>
 <style>
-  #orderForm{
+  #orderTable{
     width:50%;
     margin:10px auto;
     padding: 20px;
@@ -8,23 +7,23 @@
     background:#aaa; 
   } 
 
-  #orderForm td{
+  #orderTable td{
     background: #ccc;
   }
 
-  #orderForm td:nth-child(1){
+  #orderTable td:nth-child(1){
     width:20%;
     text-align:right;    
   }
-  #orderForm td:nth-child(2) select {
+  #orderTable td:nth-child(2) select {
     width:98%;
     text-align:left;    
   }
-
 </style>
 
-
-<table id="orderForm">
+<div id='orderForm'>
+<h2 class='ct'>線上訂票</h2>
+<table id="orderTable">
     <tr>
         <td>電影</td>
         <td><select name="movie" id="movie"></select></td>        
@@ -39,9 +38,16 @@
     </tr>
 </table>
 <div class="ct">
-    <button>確定</button>
-    <button>重置</button>
+    <button class="btn-submit">確定</button>
+    <button class="btn-reset">重置</button>
 </div>
+</div>
+
+<div id="booking" style="display:none">
+
+
+</div>
+
 
 <script>
  let url= new URLSearchParams(location.search);
@@ -56,6 +62,27 @@ $('#date').on("change",function(){
    getSessions($("#movie").val(),$(this).val())
  })
 
+ //按鈕切換
+// $(".btn-submit, .btn-prev").on("click",function(){
+//   $("#orderForm,#booking").toggle();  
+// })
+$(".btn-submit").on("click",function(){
+  $.get("./api/get_booking.php",{
+       id:$('#movie').val(),
+       date:$('#date').val(),
+       session:$('#session').val()
+      },(booking)=>{
+        $("#booking").html(booking);       
+
+        $(".btn-prev").on("click",function(){  
+          $("#booking").hide();
+          $("#orderForm").show();
+         })
+      $("#orderForm").hide();
+      $("#booking").show();
+
+      })
+})
 
  function getMovies(){
     let id=0    
@@ -69,6 +96,7 @@ $('#date').on("change",function(){
         
     })  
  }
+
 
 
 function getDates(movieId){
