@@ -1,4 +1,5 @@
-<?php include_once "db.php";
+<?php 
+include_once "db.php";
 
 $table=${$_POST['table']};
 $row1=$table->find($_POST['id']);
@@ -10,6 +11,3 @@ $row2['rank']=$tmp_rank;
 
 $table->save($row1);
 $table->save($row2);
-
-
-?>

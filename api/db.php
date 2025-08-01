@@ -1,29 +1,20 @@
 <?php
 session_start();
 date_default_timezone_set("Asia/Taipei");
- 
+
 $leveStr=[
-1=>'普遍級',
-2=>'輔導級',
-3=>'保護級',
-4=>'限制級'
+    1=>"普遍級",
+    2=>"輔導級",
+    3=>"保護級",
+    4=>"限制級"
 ];
 
 $sessStr=[
-  0=>"14:00~16:00",
-  1=>"16:00~18:00",
-  2=>"18:00~20:00",
-  3=>"20:00~22:00",
-  4=>"22:00~24:00",
-];
-
-
-
-$Type=[
-1=>'健康新知',
-2=>'菸害防治',
-3=>'癌症防治',
-4=>'慢性病防治',
+    0=>"14:00~16:00",
+    1=>"16:00~18:00",
+    2=>"18:00~20:00",
+    3=>"20:00~22:00",
+    4=>"22:00~24:00",
 ];
 
 function dd($array){
@@ -31,6 +22,8 @@ function dd($array){
     print_r($array);
     echo "</pre>";
 }
+
+
 
 function q($sql){
     $dsn='mysql:host=localhost;dbname=db02;charset=utf8';
@@ -67,6 +60,8 @@ function all(...$arg){
     if(isset($arg[1])){
         $sql .= $arg[1];
     }
+
+   // echo $sql;
 
     return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -108,7 +103,6 @@ function sum($col,...$arg){
 
     return $this->pdo->query($sql)->fetchColumn();
 }
-
 function max($col,...$arg){
     $sql="select max($col) from $this->table ";
     if(isset($arg[0])){
@@ -127,8 +121,6 @@ function max($col,...$arg){
 
     return $this->pdo->query($sql)->fetchColumn();
 }
-
-
 
 function find($id){
     $sql="select * from $this->table ";
@@ -187,8 +179,6 @@ private function arraytosql($array){
 }
 
 
-$Poster=new DB('posters');
-$Movie=new DB('movies');
-
-
-?>
+$Poster=new DB("posters");
+$Movie=new DB("movies");
+$Order=new DB("orders");

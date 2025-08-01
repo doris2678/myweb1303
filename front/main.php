@@ -236,7 +236,9 @@ $(".left,.right").on("click",function(){
                 <div>
                     <button onclick="location.href='?do=intro&id=<?=$movie['id']?>'">劇情簡介</button>
                     <button onclick="location.href='?do=order&id=<?=$movie['id']?>'">線上訂票</button>
-                </div>                    
+                </div>
+
+
 
                 </div>
             <?php
