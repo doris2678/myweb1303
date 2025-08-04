@@ -5,13 +5,13 @@
 $type=$_POST['type'];
 $data=$_POST['data'];
 
-switch($type){
+switch ($type) {
     case 'date':
         $Order->del(['date'=>$data]);
-    break;
+        break;
     case 'movie':
         $Order->del(['movie'=>$data]);
-    break;
+        break;    
 }
 
-
+?>
